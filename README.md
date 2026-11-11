@@ -5,6 +5,7 @@
 - 点选歌曲名、歌手、专辑、歌词和时间字段，调整片段顺序，编辑固定文字。
 - 内置常用模板，支持撤销、重做和直接编辑模板文本。
 - 使用可修改的示例数据即时预览，检查缺失信息、未知字段和过长内容。
+- 采用 Fluent 界面与图标，支持深色、浅色主题切换。
 - 保存时只修改 `songFormat`，保留缓存与其他配置；替换原文件前留下 `.bak` 备份。
 
 ## 使用
@@ -28,7 +29,11 @@
 
 ```powershell
 dotnet build src/SaltSteamEditor/SaltSteamEditor.csproj -c Release
-dotnet publish src/SaltSteamEditor/SaltSteamEditor.csproj -c Release -r win-x64 --self-contained true -o publish
+./Publish-Portable.ps1
 ```
 
 模板字段和替换顺序依据原插件的 [Config.java](https://github.com/GaodaGG/SaltSteamPlugin/blob/89232ab/src/main/java/com/gg/SaltSteamPlugin/Config.java)，兼容该提交的配置结构。Steam 长度限制参考 [ISteamFriends 文档](https://partner.steamgames.com/doc/api/ISteamFriends#SetRichPresence)。原插件及其许可不随本工具一同打包。
+
+便携包生成在 `publish` 目录，包含运行时与所需的第三方声明；输出目录需为空。可通过 `-OutputDirectory` 指定其他目录。
+
+界面使用 [WPF UI](https://github.com/lepoco/wpfui)，布局与文字层级参考 [Microsoft Fluent 2](https://fluent2.microsoft.design/typography)。第三方声明见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。

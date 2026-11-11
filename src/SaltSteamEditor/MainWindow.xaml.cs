@@ -7,10 +7,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
 using SaltSteamEditor.Core;
+using Wpf.Ui.Appearance;
 
 namespace SaltSteamEditor;
 
-public partial class MainWindow : Window
+public partial class MainWindow : Wpf.Ui.Controls.FluentWindow
 {
     private readonly List<PreviewField> _samples = SongTemplate.Fields.Select(field => new PreviewField(field)).ToList();
     private readonly Stack<string> _undo = new();
@@ -20,11 +21,13 @@ public partial class MainWindow : Window
     private string _lastFormat = SongTemplate.Default;
     private bool _ready;
     private bool _restoring;
+    private bool _darkTheme = true;
     private IReadOnlyList<TemplateSegment> _segments = [];
 
     public MainWindow()
     {
         InitializeComponent();
+        ApplyFluentTheme();
         PresetBox.ItemsSource = SongTemplate.Presets;
         PresetBox.SelectedIndex = 0;
         FieldButtons.ItemsSource = SongTemplate.Fields;
@@ -180,6 +183,7 @@ public partial class MainWindow : Window
         RedoButton.IsEnabled = _redo.Count > 0;
         SaveButton.IsEnabled = SongTemplate.CanSave(TemplateBox.Text);
         Title = (IsDirty ? "* " : "") + "Salt Steam 状态编辑器";
+        AppTitleBar.Title = Title;
         RefreshPreview();
     }
 
@@ -235,6 +239,7 @@ public partial class MainWindow : Window
         RemoveButton.IsEnabled = selected != null;
         LiteralPanel.Visibility = selected is { IsField: false } ? Visibility.Visible : Visibility.Collapsed;
         LiteralBox.Text = selected?.Text ?? "";
+        SelectionHint.Text = selected == null ? "未选择片段" : selected.IsField ? selected.Text : "固定文字";
     }
 
     private void TemplateFocused(object sender, KeyboardFocusChangedEventArgs e) => SegmentList.SelectedIndex = -1;
@@ -371,7 +376,32 @@ public partial class MainWindow : Window
     {
         StatusText.Text = message;
         StatusText.ToolTip = message;
-        StatusText.Foreground = new System.Windows.Media.SolidColorBrush(
-            error ? System.Windows.Media.Color.FromRgb(159, 55, 38) : System.Windows.Media.Color.FromRgb(72, 101, 122));
+        if (error)
+            StatusText.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(239, 143, 128));
+        else
+            StatusText.SetResourceReference(TextBlock.ForegroundProperty, "Muted");
+    }
+
+    private void ThemeClick(object sender, RoutedEventArgs e)
+    {
+        _darkTheme = !_darkTheme;
+        ApplyFluentTheme();
+        var palette = _darkTheme
+            ? new[] { "#202020", "#282828", "#222222", "#404040", "#F4F4F4", "#B5B5B5", "#8FCBFF", "#293D4E", "#102535" }
+            : new[] { "#F3F3F3", "#FFFFFF", "#F7F7F7", "#E1E1E1", "#1A1A1A", "#616161", "#005A9E", "#E8F1FA", "#FFFFFF" };
+        var names = new[] { "Canvas", "Surface", "Inset", "Stroke", "Ink", "Muted", "Accent", "TokenFill", "AccentInk" };
+        for (var i = 0; i < names.Length; i++)
+            Application.Current.Resources[names[i]] = new System.Windows.Media.SolidColorBrush(
+                (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(palette[i]));
+        ThemeButton.Content = _darkTheme ? "浅色" : "深色";
+        ThemeButton.Icon = new Wpf.Ui.Controls.SymbolIcon(_darkTheme
+            ? Wpf.Ui.Controls.SymbolRegular.WeatherSunny24 : Wpf.Ui.Controls.SymbolRegular.WeatherMoon24);
+    }
+
+    private void ApplyFluentTheme()
+    {
+        var theme = _darkTheme ? ApplicationTheme.Dark : ApplicationTheme.Light;
+        ApplicationThemeManager.Apply(theme, Wpf.Ui.Controls.WindowBackdropType.None, updateAccent: false);
+        ApplicationAccentColorManager.Apply(System.Windows.Media.Color.FromRgb(0, 112, 196), theme, false, false);
     }
 }
