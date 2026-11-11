@@ -6,4 +6,4 @@
 
 ## .NET 运行时
 
-Windows 便携包包含 Microsoft.NETCore.App 与 Microsoft.WindowsDesktop.App 运行时。该包的 `licenses` 目录包含随所用运行时版本提供的许可与第三方声明。
+Windows 单文件 EXE 包含 Microsoft.NETCore.App 与 Microsoft.WindowsDesktop.App 运行时。相应版本的许可与第三方声明已内置，可从窗口顶部的“关于”图标查看全文。

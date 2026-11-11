@@ -10,7 +10,7 @@
 
 ## 使用
 
-需要 Windows 10/11 x64，并已安装、启用原插件。便携包自带运行时，解压后运行 `SaltSteamEditor.exe`。
+需要 Windows 10/11 x64，并已安装、启用原插件。下载后双击 `Salt Steam 状态编辑器.exe`，无需解压或安装 .NET。
 
 1. 在 SPW 的数据目录中找到 **SaltSteamPlugin 实际使用的 `config.json`**，点击“打开配置”或将文件拖入窗口。应包含字符串字段 `songFormat`；不要选择定义设置页面的 `preference_config.json`。不同安装方式的数据位置可能不同，可在 SPW 中查看数据目录。
 2. 应用预设或点选字段。选择片段后可左移、右移、移除，固定文字可单独编辑；也能直接输入模板文本。
@@ -34,6 +34,6 @@ dotnet build src/SaltSteamEditor/SaltSteamEditor.csproj -c Release
 
 模板字段和替换顺序依据原插件的 [Config.java](https://github.com/GaodaGG/SaltSteamPlugin/blob/89232ab/src/main/java/com/gg/SaltSteamPlugin/Config.java)，兼容该提交的配置结构。Steam 长度限制参考 [ISteamFriends 文档](https://partner.steamgames.com/doc/api/ISteamFriends#SetRichPresence)。原插件及其许可不随本工具一同打包。
 
-便携包生成在 `publish` 目录，包含运行时与所需的第三方声明；输出目录需为空。可通过 `-OutputDirectory` 指定其他目录。
+单文件 EXE 生成在 `publish` 目录，包含运行时；输出目录需为空。可通过 `-OutputDirectory` 指定其他目录。第三方许可已内置，可点击窗口顶部的“关于”图标查看。
 
 界面使用 [WPF UI](https://github.com/lepoco/wpfui)，布局与文字层级参考 [Microsoft Fluent 2](https://fluent2.microsoft.design/typography)。第三方声明见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。

@@ -26,6 +26,7 @@
                     <TextBlock Text="组合音乐信息，定制 Steam 好友看到的状态。" Foreground="{DynamicResource Muted}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <ui:Button Icon="{ui:SymbolIcon Info24}" Appearance="Transparent" Click="AboutClick" ToolTip="关于与第三方许可" AutomationProperties.Name="关于与第三方许可" Margin="0,0,4,0"/>
                     <ui:Button x:Name="ThemeButton" Content="浅色" Appearance="Transparent" Icon="{ui:SymbolIcon WeatherSunny24}" Click="ThemeClick" Margin="0,0,16,0"/>
                     <ui:Button Content="另存为" Click="SaveAsClick" Margin="0,0,8,0"/>
                     <ui:Button x:Name="SaveButton" Content="保存配置" Icon="{ui:SymbolIcon Save24}" Appearance="Primary" Click="SaveClick"

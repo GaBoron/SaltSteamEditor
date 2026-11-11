@@ -398,6 +398,8 @@ public partial class MainWindow : Wpf.Ui.Controls.FluentWindow
             ? Wpf.Ui.Controls.SymbolRegular.WeatherSunny24 : Wpf.Ui.Controls.SymbolRegular.WeatherMoon24);
     }
 
+    private void AboutClick(object sender, RoutedEventArgs e) => new AboutWindow { Owner = this }.ShowDialog();
+
     private void ApplyFluentTheme()
     {
         var theme = _darkTheme ? ApplicationTheme.Dark : ApplicationTheme.Light;

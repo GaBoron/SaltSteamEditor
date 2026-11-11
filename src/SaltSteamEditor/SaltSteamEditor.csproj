@@ -12,7 +12,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="WPF-UI" Version="4.3.0" />
-    <Content Include="../../licenses/*" Link="licenses/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
-    <Content Include="../../README.md;../../THIRD-PARTY-NOTICES.md" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <EmbeddedResource Include="../../licenses/*" LogicalName="Notices.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="$(RuntimeNoticeDirectory)/*" LogicalName="Notices.%(Filename)%(Extension)" Condition="'$(RuntimeNoticeDirectory)' != ''" />
   </ItemGroup>
+  <Target Name="RequireRuntimeNotices" BeforeTargets="PrepareForBuild" Condition="'$(PublishSingleFile)' == 'true'">
+    <Error Condition="!Exists('$(RuntimeNoticeDirectory)')" Text="请通过 Publish-Portable.ps1 构建单文件，以包含对应运行时的许可。" />
+  </Target>
 </Project>
