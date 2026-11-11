@@ -16,6 +16,7 @@
         <StackPanel Grid.Row="1" Margin="24,16,24,20">
             <TextBlock Text="Salt Steam 状态编辑器" FontSize="22" FontWeight="SemiBold"/>
             <TextBlock Text="SaltSteamPlugin 的独立可视化配套工具。" Foreground="{DynamicResource Muted}" Margin="0,8,0,0"/>
+            <TextBlock x:Name="VersionText" Foreground="{DynamicResource Muted}" Margin="0,8,0,0"/>
             <TextBlock Text="第三方许可" FontWeight="SemiBold" Margin="0,20,0,0"/>
         </StackPanel>
         <ui:TextBox x:Name="NoticeText" Grid.Row="2" Margin="24,0,24,24" IsReadOnly="True"

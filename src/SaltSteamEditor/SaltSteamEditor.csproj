@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>SaltSteamEditor</AssemblyName>
+    <Version>0.1.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <Product>Salt Steam 状态编辑器</Product>
     <Description>SaltSteamPlugin 独立可视化模板编辑器</Description>
     <DebugType>none</DebugType>

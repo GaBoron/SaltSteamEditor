@@ -10,7 +10,7 @@
 
 ## 使用
 
-需要 Windows 10/11 x64，并已安装、启用原插件。下载后双击 `Salt Steam 状态编辑器.exe`，无需解压或安装 .NET。
+需要 Windows 10/11 x64，并已安装、启用原插件。[下载 Windows 单文件 EXE](https://github.com/GaBoron/SaltSteamEditor/releases/latest/download/SaltSteamEditor.exe)，双击打开，无需解压或安装 .NET。
 
 1. 在 SPW 的数据目录中找到 **SaltSteamPlugin 实际使用的 `config.json`**，点击“打开配置”或将文件拖入窗口。应包含字符串字段 `songFormat`；不要选择定义设置页面的 `preference_config.json`。不同安装方式的数据位置可能不同，可在 SPW 中查看数据目录。
 2. 应用预设或点选字段。选择片段后可左移、右移、移除，固定文字可单独编辑；也能直接输入模板文本。

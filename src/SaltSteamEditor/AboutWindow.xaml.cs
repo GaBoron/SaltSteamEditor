@@ -10,6 +10,7 @@ public partial class AboutWindow : Wpf.Ui.Controls.FluentWindow
     {
         InitializeComponent();
         var assembly = Assembly.GetExecutingAssembly();
+        VersionText.Text = "版本 " + assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
         var notices = new StringBuilder();
         foreach (var name in assembly.GetManifestResourceNames().Where(name => name.StartsWith("Notices.", StringComparison.Ordinal)).Order())
         {
