@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>SaltSteamEditor</AssemblyName>
+    <Product>Salt Steam 状态编辑器</Product>
+    <Description>SaltSteamPlugin 独立可视化模板编辑器</Description>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+</Project>
