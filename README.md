@@ -32,6 +32,8 @@ dotnet build src/SaltSteamEditor/SaltSteamEditor.csproj -c Release
 ./Publish-Portable.ps1
 ```
 
+运行 `dotnet run --project test/CoreChecks/CoreChecks.csproj` 可检查模板和配置读写；检查使用系统临时目录并保留测试文件，不验证 WPF 界面或 SPW 集成。
+
 模板字段和替换顺序依据原插件的 [Config.java](https://github.com/GaodaGG/SaltSteamPlugin/blob/89232ab/src/main/java/com/gg/SaltSteamPlugin/Config.java)，兼容该提交的配置结构。Steam 长度限制参考 [ISteamFriends 文档](https://partner.steamgames.com/doc/api/ISteamFriends#SetRichPresence)。原插件及其许可不随本工具一同打包。
 
 单文件 EXE 生成在 `publish` 目录，包含运行时；输出目录需为空。可通过 `-OutputDirectory` 指定其他目录。第三方许可已内置，可点击窗口顶部的“关于”图标查看。
